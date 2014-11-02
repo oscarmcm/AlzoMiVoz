@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block content %}
+    <header id="top">
+        <div class="text">
+            <h2><i class="fa fa-bullhorn"></i> Alza tu voz</h2>
+            <p>Mira las denuncias que otros han publicado.</p>
+    </header>
+    {% for denuncia in denuncias %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row contentDenuncias">
+                    <div class="col-md-4">
+                        <span class="denunciaTitle">{{ denuncia.titulo}}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="denunciaLugar">
+                            <i class="fa fa-map-marker fa-1x"></i> Villa Venezuela</span>
+                        <br>
+                        <p class="reportedBy"><i class="fa fa-user"></i>
+                        Reportada por <span><em>{{ denuncia.autor }}</em></span></p>
+                    </div>
+                    <div class="col-md-3">
+                        {% thumbnail denuncia.imagen "220x140" crop="10%" as img %}
+                        <img class="img-rounded denunciaimg" src="{{ img.url }}">
+                        {% empty %}
+                            <p>No image</p>
+                        {% endthumbnail %}
+                    </div>
+                    <div class="col-md-2">
+                        <a href="#"><i class="fa fa-bullhorn fa-2x"></i></a>
+                        <span class="totalPulls">1</span>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <header id="top">
+        <div class="text">
+                <h2><i class="fa fa-bullhorn"></i> Alzo Mi Voz</h2>
+                <p>Se parte de los ciudadanos nicaraguenses que denuncian la contaminación de nestro medio ambiente.</p>
+        </div>
+    </header>
+    <div class="main">
+        <form enctype="multipart/form-data" action="." method="post" class="cbp-mc-form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 cbp-mc-form">
+                        <center>
+                            {% csrf_token %}             
+                            {{ form.as_p }}
+                        </center>
+                            <div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" class="btn btn-2 btn-2g" value="Envia tu Denuncia" /></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
