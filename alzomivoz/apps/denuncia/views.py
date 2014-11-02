@@ -8,6 +8,12 @@ from django.views.generic import FormView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q, Count
 
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from denuncia.serializers import PostSerializer
+
 import json
 import time
 
@@ -38,4 +44,27 @@ def estadistica(request, template='denuncia/panel.html'):
     """panel de estadistica para las denuncias"""
     
     return render(request, template, {})
-        
+
+def mapa(request, template='denuncia/mapa.html'):
+    """mapa de incidencias"""
+
+    return render(request, template, {})
+
+@api_view(['GET'])
+def denuncia_collection(request):
+    if request.method == 'GET':
+        denuncia = Denuncia.objects.all()
+        serializer = PostSerializer(denuncia, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def denuncia_element(request, pk):
+    try:
+        denuncia = Denuncia.objects.get(pk=pk)
+    except Denuncia.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = PostSerializer(denuncia)
+        return Response(serializer.data)
