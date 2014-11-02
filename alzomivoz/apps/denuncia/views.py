@@ -20,7 +20,7 @@ import time
 from .models import Denuncia
 from .forms import DenunciaForm
 
-class DenunciaView(ListView):
+class DenunciaList(ListView):
     """vista en modo lista para las denuncia"""
     models = Denuncia
     context_object_name = 'denuncias'
@@ -33,7 +33,8 @@ def agregar_denuncia(request):
         if form.is_valid():
             nueva_denuncia = form.save()
 
-            return HttpResponseRedirect(reverse('denuncias:denuncias', args=(nueva_denuncia.pk,)))
+            return HttpResponseRedirect(reverse('denuncias_list'))
+
     else:
         form = DenunciaForm()
 

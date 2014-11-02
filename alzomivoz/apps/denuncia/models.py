@@ -6,6 +6,9 @@ class Denuncia(models.Model):
     imagen = models.ImageField(upload_to='denuncia/', blank=True, null=True)
     autor = models.CharField(max_length=60)
 
+    #No Visible
+    fecha_agregado = models.DateField(auto_now_add=True, editable=False)
+    
     def __unicode__(self):
         return self.titulo
 
