@@ -15,9 +15,10 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('denuncia.urls')),
+    url(r'', include('social_auth.urls')),
     url(r'^', TemplateView.as_view(template_name="index.html") ),
 ) 
 
 
-if settings.DEBUG :
+if settings.DEBUG == True:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

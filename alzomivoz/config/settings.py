@@ -44,6 +44,7 @@ class Common(Configuration):
         'crispy_forms',
         'sorl.thumbnail',
         'rest_framework',
+        'social_auth'
     )
 
     # Apps specific for this project go here.
