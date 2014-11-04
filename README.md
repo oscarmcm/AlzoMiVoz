@@ -1,5 +1,7 @@
 AlzoMiVoz
 =========
+[ ![Codeship Status for 
+oscarmcm/AlzoMiVoz](https://www.codeship.io/projects/6a870220-45df-0132-c37d-56cbe89fce4b/status)](https://www.codeship.io/projects/45163)
 
 App for DAL2014
 
