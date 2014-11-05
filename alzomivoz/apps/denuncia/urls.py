@@ -4,8 +4,8 @@ from django.conf.urls import patterns, url
 from .views import DenunciaList
 
 urlpatterns = patterns('denuncia.views',
-    url(r'^denuncias/$', DenunciaList.as_view(), name="denuncias_list"),
-    url(r'^denunciar/$', 'agregar_denuncia', name='agregar_denuncia'),
+    url(r'^listar/$', DenunciaList.as_view(), name="denuncias_list"),
+    url(r'^agregar/$', 'agregar_denuncia', name='agregar_denuncia'),
     url(r'^estadisticas/$', 'estadistica', name='panel_estadistica'),
     url(r'^mapa/$', 'mapa', name='mapa'),
 

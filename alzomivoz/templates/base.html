@@ -1,3 +1,4 @@
+{% load staticfiles i18n %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,10 +11,10 @@
     <meta name="author" content="Storm Coders">
 
     <title>Alzo mi Voz</title>
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/main.css" rel="stylesheet">
-    <link rel="icon" type="img/ico" href="../static/img/favicon.ico">
-    <link href="../static/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type='text/css'>
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" type='text/css'>
+    <link rel="icon" type="img/ico" href="{% static 'img/favicon.ico' %}" type='text/css'>
+    <link href="{% static 'font-awesome-4.2.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
 
@@ -25,12 +26,12 @@
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand"><a href="/"><i class="fa fa-home"></i> Alzo Mi Voz</a></li>
-            <li><a href="/denunciar/"><i class="fa fa-bullhorn"></i> Denunciar</a></li>
-            <li><a href="/denuncias/"><i class="fa fa-eye"></i> Ver Denuncias</a></li>
-            <li><a href="/estadisticas/"><i class="fa fa-bar-chart"></i> Estadísticas</a></li>
-            <li><a href="/mapa/"><i class="fa fa-map-marker"></i> Mapa De Incidencias</a></li>
-            <li><a href="/api/v1/posts/"><i class="fa fa-database"></i> REST API</a></li>
-            <li><a href="#services"><i class="fa fa-info-circle"></i> Acerca de</a></li>
+            <li><a href="/denuncia/agregar/"><i class="fa fa-bullhorn"></i> Denunciar</a></li>
+            <li><a href="/denuncia/listar/"><i class="fa fa-eye"></i> Ver Denuncias</a></li>
+            <li><a href="/denuncia/estadisticas/"><i class="fa fa-bar-chart"></i> Estadísticas</a></li>
+            <li><a href="/denuncia/mapa/"><i class="fa fa-map-marker"></i> Mapa De Incidencias</a></li>
+            <li><a href="/denuncia/api/v1/posts/"><i class="fa fa-database"></i> REST API</a></li>
+            <li><a href="/about"><i class="fa fa-info-circle"></i> Acerca de</a></li>
         </ul>
         <div class="footer">
             <div class="text-center">
@@ -48,9 +49,9 @@
     {% block content %}
     {% endblock content %}
 
-    <script src="../static/js/jquery-1.11.1.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/modernizr.custom.js"></script>
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/modernizr.custom.js' %}"></script>
 
     <script>
     $("#menu-close").click(function(e) {
