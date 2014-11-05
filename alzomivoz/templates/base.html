@@ -26,10 +26,10 @@
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand"><a href="/"><i class="fa fa-home"></i> Alzo Mi Voz</a></li>
-            <li><a href="/denuncia/agregar/"><i class="fa fa-bullhorn"></i> Denunciar</a></li>
-            <li><a href="/denuncia/listar/"><i class="fa fa-eye"></i> Ver Denuncias</a></li>
-            <li><a href="/denuncia/estadisticas/"><i class="fa fa-bar-chart"></i> Estadísticas</a></li>
-            <li><a href="/denuncia/mapa/"><i class="fa fa-map-marker"></i> Mapa De Incidencias</a></li>
+            <li><a href="{% url 'agregar_denuncia' %}"><i class="fa fa-bullhorn"></i> Denunciar</a></li>
+            <li><a href="{% url 'denuncias_list' %}"><i class="fa fa-eye"></i> Ver Denuncias</a></li>
+            <li><a href="{% url 'panel_estadistica' %}"><i class="fa fa-bar-chart"></i> Estadísticas</a></li>
+            <li><a href="{% url 'mapa' %}"><i class="fa fa-map-marker"></i> Mapa De Incidencias</a></li>
             <li><a href="/denuncia/api/v1/posts/"><i class="fa fa-database"></i> REST API</a></li>
             <li><a href="/about"><i class="fa fa-info-circle"></i> Acerca de</a></li>
         </ul>
