@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles i18n %}
 {% block content %}
 <div class="text">
         <h2><i class="fa fa-bullhorn"></i> Alzo Mi Voz</h2>
@@ -52,5 +53,5 @@
 {% block extra_js %}
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
-    <script src="../static/js/charts.js"></script>
+    <script src="{% static 'js/charts.js' %}"></script>
 {% endblock extra_js %}
