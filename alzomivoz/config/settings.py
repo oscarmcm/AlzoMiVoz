@@ -44,7 +44,8 @@ class Common(Configuration):
         'crispy_forms',
         'sorl.thumbnail',
         'rest_framework',
-        'social_auth'
+        'social_auth',
+        'django_social_share'
     )
 
     # Apps specific for this project go here.

@@ -18,6 +18,16 @@ body {
     color: white;
 }
 
+.login > li > a{
+    color: #000 !important;
+}
+#map-canvas{
+    height: 100%;
+    width: 100%
+}
+#images{
+    list-style: none;
+}
 .text-vertical-center h1 {
     margin: 0;
     padding: 0;

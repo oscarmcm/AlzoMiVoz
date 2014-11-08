@@ -30,7 +30,7 @@ class DenunciaList(ListView):
 
 def agregar_denuncia(request):
     if request.method == 'POST':
-        form = DenunciaForm(request.POST)
+        form = DenunciaForm(request.POST, request.FILES)
         if form.is_valid():
             nueva_denuncia = form.save()
 

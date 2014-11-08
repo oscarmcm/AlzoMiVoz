@@ -32,19 +32,28 @@
             <li><a href="{% url 'mapa' %}"><i class="fa fa-map-marker"></i> Mapa De Incidencias</a></li>
             <li><a href="/denuncia/api/v1/posts/"><i class="fa fa-database"></i> REST API</a></li>
             <li><a href="/about"><i class="fa fa-info-circle"></i> Acerca de</a></li>
+            {% if user and not user.is_anonymous %}
+            <li>
+                <a>Hola {{ user.get_full_name|default:user.username }}!</a>
+            </li>
+            <li>
+                <a href="">Logout</a>
+            </li>
+            {% else %}
             <li>
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                     Login
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                  <ul class="dropdown-menu login" role="menu" aria-labelledby="dropdownMenu1">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'socialauth_begin' 'google-oauth2' %}">Login with Google</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'socialauth_begin' 'facebook' %}">Login with Facebook</a></li>
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'socialauth_begin' 'twitter' %}">Login with Twitter</a></li>
                   </ul>
                 </div>
             </li>
+            {% endif %}
         </ul>
 
         <div class="footer">

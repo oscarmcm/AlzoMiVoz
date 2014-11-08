@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load thumbnail staticfiles i18n %}
+{% load thumbnail staticfiles i18n social_share %}
 {% block content %}
     <header id="top">
         <div class="text">
@@ -35,6 +35,8 @@
                     <div class="col-md-2">
                         <a href="#"><i class="fa fa-bullhorn fa-2x"></i></a>
                         <span class="totalPulls">1</span>
+                        <p>{% post_to_facebook "{{denuncia.titulo}}" "Post to Facrebook" %}</p>
+                        <p>{% post_to_twitter "#AlzoMiVoz - {{denuncia.titulo}}!" object_or_url "Post to Twitter" %}</p>
                     </div>
                 </div>
             </div>
