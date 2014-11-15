@@ -46,7 +46,8 @@ class Common(Configuration):
         'sorl.thumbnail',
         'rest_framework',
         'social_auth',
-        'django_social_share'
+        'django_social_share',
+        'twitter_tag',
     )
 
     # Apps specific for this project go here.
@@ -183,10 +184,20 @@ class Common(Configuration):
     WSGI_APPLICATION = 'config.wsgi.application'
     ########## End URL Configuration
 
+    ### Twitter Tags
+    # Your access token: Access token
+    TWITTER_OAUTH_TOKEN = '419211195-LV3eZUNEqCKpsY3XjKCoG7kC7UmODYGQTO7tQdkZ'
+    # Your access token: Access token secret
+    TWITTER_OAUTH_SECRET = 'xaAPkiXiyrpOI1tRKm3FvH9oSRGz5sOgvT7nulYIl4d4t'
+    # OAuth settings: Consumer key
+    TWITTER_CONSUMER_KEY = 'p7SKYyhbEmjQfwWiCM7pNzrl'
+    # OAuth settings: Consumer secret
+    TWITTER_CONSUMER_SECRET = 'Pys3c5oMqtZ8gdKfFrdmMxyqFuW5xSQnUO5mIkgRhQKlolRLNR'
+
     ###Backend to autentications
     AUTHENTICATION_BACKENDS = (
         'social_auth.backends.google.GoogleOAuth2Backend',
-        'social_auth.backends.contrib.github.GithubBackend',    
+        'social_auth.backends.contrib.github.GithubBackend',
         'social_auth.backends.twitter.TwitterBackend',
         'social_auth.backends.facebook.FacebookBackend',
         'django.contrib.auth.backends.ModelBackend',

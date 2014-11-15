@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
-{% load thumbnail staticfiles i18n social_share %}
+{% load thumbnail staticfiles i18n social_share twitter_tag %}
 {% block content %}
+{% search_tweets for "AlzoMiVoz" as tweets limit 10 %}
     <header id="top">
         <div class="text">
             <h2><i class="fa fa-bullhorn"></i> Alzo Mi Voz</h2>
             <p>Mira las denuncias que otros han publicado.</p>
+            <ul>
+            {% for tweet in tweets %}
+                <li>{{ tweet.html|safe }}</li>
+            {% endfor %}
+            </ul>
     </header>
     {% for denuncia in denuncias %}
     <div class="container">
