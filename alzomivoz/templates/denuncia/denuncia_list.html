@@ -41,7 +41,7 @@
                     <div class="col-md-2">
                         <a href="#"><i class="fa fa-bullhorn fa-2x"></i></a>
                         <span class="totalPulls">1</span>
-                        <p>{% post_to_facebook "{{denuncia.titulo}}" "Post to Facrebook" %}</p>
+                        <p>{% post_to_facebook "{{denuncia.titulo}}" "Post to Facebook" %}</p>
                         <p>{% post_to_twitter "#AlzoMiVoz - {{denuncia.titulo}}!" object_or_url "Post to Twitter" %}</p>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
     {% endfor %}
 {% endblock content %}
 {% block extra_js %}
-<script src="{% static 'js/fullScreenFun.min.js' %}"></script>
+<script src="{% static 'js/fullscreenFun.min.js' %}"></script>
 <script>
 (function(){
     $('img').on("click", function(){
