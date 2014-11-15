@@ -36,6 +36,7 @@ class Common(Configuration):
         # 'django.contrib.humanize',
 
         # Admin
+        'suit',
         'django.contrib.admin',
         'django.contrib.admindocs',
     )
