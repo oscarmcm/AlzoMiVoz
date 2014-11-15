@@ -14,8 +14,11 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),   
-    url(r'^/about/$', TemplateView.as_view(template_name="about.html")),
+    url(r'^about/', TemplateView.as_view(template_name="about.html")),
+    url(r'^error/', TemplateView.as_view(template_name="error.html")),
     url(r'^denuncia/', include('denuncia.urls')),
+    url(r'', include('social_auth.urls')),
+    url(r'^$', TemplateView.as_view(template_name="index.html")),
 ) 
 
 

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% load thumbnail %}
+{% load thumbnail staticfiles i18n social_share %}
 {% block content %}
     <header id="top">
         <div class="text">
-            <h2><i class="fa fa-bullhorn"></i> Alza tu voz</h2>
+            <h2><i class="fa fa-bullhorn"></i> Alzo Mi Voz</h2>
             <p>Mira las denuncias que otros han publicado.</p>
     </header>
     {% for denuncia in denuncias %}
@@ -23,7 +23,11 @@
                     </div>
                     <div class="col-md-3">
                         {% thumbnail denuncia.imagen "220x140" crop="10%" as img %}
-                        <img class="img-rounded denunciaimg" src="{{ img.url }}">
+                        <div id="wrapper">
+                            <ul id="images">
+                                <li><img src="{{ img.url }}" alt="" /></li>
+                            </ul>
+                        </div>
                         {% empty %}
                             <p>No image</p>
                         {% endthumbnail %}
@@ -31,6 +35,8 @@
                     <div class="col-md-2">
                         <a href="#"><i class="fa fa-bullhorn fa-2x"></i></a>
                         <span class="totalPulls">1</span>
+                        <p>{% post_to_facebook "{{denuncia.titulo}}" "Post to Facrebook" %}</p>
+                        <p>{% post_to_twitter "#AlzoMiVoz - {{denuncia.titulo}}!" object_or_url "Post to Twitter" %}</p>
                     </div>
                 </div>
             </div>
@@ -38,3 +44,25 @@
     </div>
     {% endfor %}
 {% endblock content %}
+{% block extra_js %}
+<script src="{% static 'js/fullScreenFun.min.js' %}"></script>
+<script>
+(function(){
+    $('img').on("click", function(){
+        fullScreenFunc(this);
+    });
+})();
+         
+function fullScreenFunc(obj){
+    if (obj.requestFullscreen) {
+        obj.requestFullscreen();
+    }
+    else if (obj.mozRequestFullScreen) {
+        obj.mozRequestFullScreen();
+    }
+    else if (obj.webkitRequestFullScreen) {
+        obj.webkitRequestFullScreen();
+    }
+}
+</script>
+{% endblock extra_js %}

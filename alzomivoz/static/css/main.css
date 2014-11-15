@@ -18,6 +18,16 @@ body {
     color: white;
 }
 
+.login > li > a{
+    color: #000 !important;
+}
+#map-canvas{
+    height: 100%;
+    width: 100%
+}
+#images{
+    list-style: none;
+}
 .text-vertical-center h1 {
     margin: 0;
     padding: 0;
@@ -369,7 +379,7 @@ a:hover {
     margin: 0 auto;
 }
 
-/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+
 .cbp-mc-form:before, 
 .cbp-mc-form:after { 
     content: " "; display: table; 
@@ -499,7 +509,7 @@ a:hover {
 
 .reportedBy {
     font-size: 18px;
-    ccolor: #FFCCFF;
+    color: #FFCCFF;
 }
 
 .denunciaimg{
@@ -519,6 +529,37 @@ a:hover {
 
 .col-md-4, .col-md-3 {
     padding: 10px;
+}
+
+#pageError{
+    background: #f1f1f1;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.contentError {
+    width: 80%;
+    height: 100%;
+    padding-top: 40px;
+}
+
+.contentError section {
+    padding: 20px;
+}
+
+.error404 {
+    font-size: 30px;
+    padding: 20px;
+    background: #F4B350;
+    width: 30%;
+    border-radius: 5px;
+}
+
+#footerError {
+    padding-top: 40px;
+}
+
+.pageAbout{
+    color: #fff;
 }
 
 @media screen and (max-width: 70em) {

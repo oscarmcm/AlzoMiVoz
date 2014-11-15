@@ -7,8 +7,8 @@
                 <h1>Alzo Mi Voz</h1>
                 <h3>Alza tu voz denunciando la contaminación ambiental</h3>
                 <br>
-                <a href="/denunciar/" class="btn btn-lg btn btn-light">Denunciar</a>
-                <a href="/denuncias/" class="btn btn-lg btn-dark">Ver Denuncias</a>
+                <a href="{% url 'agregar_denuncia' %}" class="btn btn-lg btn btn-light">Denunciar</a>
+                <a href="{% url 'denuncias_list' %}" class="btn btn-lg btn-dark">Ver Denuncias</a>
             </div>
         </div>
     </header>

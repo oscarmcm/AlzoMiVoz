@@ -44,7 +44,8 @@ class Common(Configuration):
         'crispy_forms',
         'sorl.thumbnail',
         'rest_framework',
-        'social_auth'
+        'social_auth',
+        'django_social_share'
     )
 
     # Apps specific for this project go here.
@@ -125,6 +126,7 @@ class Common(Configuration):
         'django.contrib.messages.context_processors.messages',
         'django.core.context_processors.request',
         # Your stuff: custom template context processers go here
+        "social_auth.context_processors.social_auth_by_type_backends"
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
@@ -179,6 +181,38 @@ class Common(Configuration):
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
     WSGI_APPLICATION = 'config.wsgi.application'
     ########## End URL Configuration
+
+    ###Backend to autentications
+    AUTHENTICATION_BACKENDS = (
+        'social_auth.backends.google.GoogleOAuth2Backend',
+        'social_auth.backends.contrib.github.GithubBackend',    
+        'social_auth.backends.twitter.TwitterBackend',
+        'social_auth.backends.facebook.FacebookBackend',
+        'django.contrib.auth.backends.ModelBackend',
+    )
+
+    ###Social Login URL
+    LOGIN_URL = '/login/'
+    LOGIN_REDIRECT_URL = '/members/'
+    LOGIN_ERROR_URL = '/login-error/'
+
+    ###social settings
+    SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
+    SOCIAL_AUTH_UID_LENGTH = 16
+    SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+    SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 16
+    SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 16
+    SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+    SOCIAL_AUTH_ENABLED_BACKENDS = ('google', 'github', 'facebook', 'twitter')
+
+    GITHUB_API_KEY = ''
+    GITHUB_API_SECRET = '' 
+    GOOGLE_OAUTH2_CLIENT_ID = '766134566502-sdi8mg21idcvd6eraakv08nk4ds1ekd0.apps.googleusercontent.com'
+    GOOGLE_OAUTH2_CLIENT_SECRET = '97M0dS4OrXVyrOJHBb_cvVVl'
+    TWITTER_CONSUMER_KEY         = 'Np7SKYyhbEmjQfwWiCM7pNzrl'
+    TWITTER_CONSUMER_SECRET      = 'Pys3c5oMqtZ8gdKfFrdmMxyqFuW5xSQnUO5mIkgRhQKlolRLNR'
+    FACEBOOK_APP_ID              = '355162997978167'
+    FACEBOOK_API_SECRET          = '2cba20b44f27e02faf98a539fa36b653'
 
 class Local(Common):
 

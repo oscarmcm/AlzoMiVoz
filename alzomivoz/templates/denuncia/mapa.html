@@ -1,7 +1,110 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="text">
-        <h2><i class="fa fa-bullhorn"></i> Alzo Mi Voz</h2>
-        <p>Bienvenido al Mapa Estadístico de las denuncias ciudadanas.</p>
-    </div>
+    <h2><i class="fa fa-bullhorn"></i> Alzo Mi Voz</h2>
+    <p>Bienvenido al Mapa Estadístico de las denuncias ciudadanas.</p>
+</div>
+<div id="map-canvas"></div>
+
 {% endblock content %}
+{% block extra_js %}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see a blank space instead of the map, this
+// is probably because you have denied permission for location sharing.
+
+var map;
+
+function initialize() {
+	var bounds = new google.maps.LatLngBounds();
+	var mapOptions = {
+		zoom: 6
+	};
+	map = new google.maps.Map(document.getElementById('map-canvas'),
+		mapOptions);
+
+	// Multiple Markers
+	var markers = [
+        ['London Eye, London', 12.128866, -86.236894],
+        ['Palace of Westminster, London', 12.065251, -86.325299]
+    ];
+
+    // Info Window Content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3>London Eye</h3>' +
+        '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' +        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Palace of Westminster</h3>' +
+        '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
+        '</div>']
+    ];
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+        
+        // Allow each marker to have an info window    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+  // Try HTML5 geolocation
+  if(navigator.geolocation) {
+  	navigator.geolocation.getCurrentPosition(function(position) {
+  		var pos = new google.maps.LatLng(position.coords.latitude,
+  			position.coords.longitude);
+
+  		var infowindow = new google.maps.InfoWindow({
+  			map: map,
+  			position: pos,
+  			content: 'Estas Aca'
+  		});
+
+  		map.setCenter(pos);
+  	}, function() {
+  		handleNoGeolocation(true);
+  	});
+  } else {
+    // Browser doesn't support Geolocation
+    handleNoGeolocation(false);
+}
+}
+
+function handleNoGeolocation(errorFlag) {
+	if (errorFlag) {
+		var content = 'Error: The Geolocation service failed.';
+	} else {
+		var content = 'Error: Your browser doesn\'t support geolocation.';
+	}
+
+	var options = {
+		map: map,
+		position: new google.maps.LatLng(60, 105),
+		content: content
+	};
+
+	var infowindow = new google.maps.InfoWindow(options);
+	map.setCenter(options.position);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+{% endblock extra_js %}
