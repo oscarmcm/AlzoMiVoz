@@ -302,7 +302,7 @@ class Production(Common):
     ########## END INSTALLED_APPS
 
     ########## SECRET KEY
-    SECRET_KEY = 'onk8mo=8envufmhe1^@h^_zgiq0xspizlh_d0fjmgz%=qsymgw'
+    SECRET_KEY = values.SecretValue()
     ########## END SECRET KEY
 
 
