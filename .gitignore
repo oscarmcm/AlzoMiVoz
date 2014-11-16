@@ -57,3 +57,4 @@ target/
 *.pyc
 *.swp
 *.sqlite3
+media/
