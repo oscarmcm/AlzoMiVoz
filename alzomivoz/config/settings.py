@@ -86,17 +86,27 @@ class Common(Configuration):
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = 'onk8mo=8envufmhe1^@h^_zgiq0xspizlh_d0fjmgz%=qsymgw'
 
-    ALLOWED_HOSTS = []
+    FIXTURE_DIRS = (
+        join(BASE_DIR, 'fixtures'),
+    )
 
     # Database
     # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    DATABASES = values.DatabaseURLValue('postgres://localhost/alzomivoz')
+
+    ########## CACHING
+    # Do this here because thanks to django-pylibmc-sasl and pylibmc memcacheify is painful to install on windows.
+    # memcacheify is what's used in Production
+    CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': ''
         }
     }
+    ########## END CACHING
+
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     ########## GENERAL CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
@@ -115,7 +125,7 @@ class Common(Configuration):
     USE_L10N = True
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
-    USE_TZ = True
+    USE_TZ = False
     ########## END GENERAL CONFIGURATION
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -168,6 +178,30 @@ class Common(Configuration):
     SOUTH_MIGRATION_MODULES = {
             'taggit': 'taggit.south_migrations',
     }
+    #suit config admin
+
+    SUIT_CONFIG = {
+        "ADMIN_NAME": "Alzo Mi Voz",
+        'MENU_ICONS': {
+            'auth': 'icon-lock',
+            'news': 'icon-file',
+            'treemenus': 'icon-tasks',
+            'taggit': 'icon-tags',
+            'sites': 'icon-globe',
+            'siteconf': 'icon-edit',
+        }
+    }
+
+    FILEBROWSER_SUIT_TEMPLATE = True
+    FILEBROWSER_DIRECTORY = ''
+    FILEBROWSER_EXTENSIONS = {
+        'Folder': [''],
+        'Image': ['.jpg','.jpeg','.gif','.png',],
+        'Document': ['.pdf','.doc','.rtf','.txt','.xls','.csv'],
+        'Video': ['.mov','.wmv','.mpeg','.mpg','.avi','.rm'],
+        'Audio': ['.mp3','.mp4','.wav','.aiff','.midi','.m4p']
+    }
+
 
     ########## MEDIA CONFIGURATION
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
@@ -259,3 +293,76 @@ class Local(Common):
         'LOCATION': ''
         }
     }
+
+class Production(Common):
+
+    DEBUG = False
+    ########## INSTALLED_APPS
+    INSTALLED_APPS = Common.INSTALLED_APPS
+    ########## END INSTALLED_APPS
+
+    ########## SECRET KEY
+    SECRET_KEY = 'onk8mo=8envufmhe1^@h^_zgiq0xspizlh_d0fjmgz%=qsymgw'
+    ########## END SECRET KEY
+
+
+    # set this to 60 seconds and then to 518400 when you can prove it works
+    #SECURE_HSTS_SECONDS = 60
+    #SECURE_HSTS_INCLUDE_SUBDOMAINS = values.BooleanValue(True)
+    #SECURE_FRAME_DENY = values.BooleanValue(True)
+    #SECURE_CONTENT_TYPE_NOSNIFF = values.BooleanValue(True)
+    #SECURE_BROWSER_XSS_FILTER = values.BooleanValue(True)
+    #SESSION_COOKIE_SECURE = values.BooleanValue(False)
+    #SESSION_COOKIE_HTTPONLY = values.BooleanValue(True)
+    #SECURE_SSL_REDIRECT = values.BooleanValue(True)
+    ########## end django-secure
+
+    ########## SITE CONFIGURATION
+    # Hosts/domain names that are valid for this site
+    # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+    ALLOWED_HOSTS = ["*"]
+    ########## END SITE CONFIGURATION
+
+    ########## EMAIL
+    DEFAULT_FROM_EMAIL = values.Value(
+            'Alzo Mi Voz <mail@mail.com>')
+    EMAIL_HOST = 'localhost'
+    EMAIL_HOST_PASSWORD = ''
+    EMAIL_HOST_USER = ''
+    EMAIL_PORT = '25'
+    EMAIL_SUBJECT_PREFIX = ''
+    EMAIL_USE_TLS = False
+    SERVER_EMAIL = EMAIL_HOST_USER
+    ########## END EMAIL
+
+    ########## TEMPLATE CONFIGURATION
+
+    # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
+    TEMPLATE_LOADERS = (
+        ('django.template.loaders.cached.Loader', (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+        )),
+    )
+    ########## END TEMPLATE CONFIGURATION
+
+    ########## CACHING
+    #CACHES = values.CacheURLValue(default="memcached://127.0.0.1:11211")
+    CACHES = {
+        'default': {
+            'BACKEND': 'redis_cache.RedisCache',
+            'LOCATION': '127.0.0.1:6379',
+            'OPTIONS': {
+                'DB': 4,
+                'PARSER_CLASS': 'redis.connection.HiredisParser',
+                'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
+                'CONNECTION_POOL_CLASS_KWARGS': {
+                    'max_connections': 50,
+                    'timeout': 20,
+                }
+            },
+        },
+    }
+    ########## END CACHING
+
+    
