@@ -4,14 +4,28 @@
 {% search_tweets for "AlzoMiVoz" as tweets limit 10 %}
     <header id="top">
         <div class="text">
-            <h2><i class="fa fa-bullhorn"></i> Alzo Mi Voz</h2>
-            <p>Mira las denuncias que otros han publicado.</p>
-            <ul>
-            {% for tweet in tweets %}
-                <li>{{ tweet.html|safe }}</li>
-            {% endfor %}
-            </ul>
+            <div class="container">
+                <h2><i class="fa fa-bullhorn"></i> Alzo Mi Voz</h2>
+                <p>Mira las denuncias que otros han publicado.</p>
+            </div>
+        </div>
     </header>
+    <div class="container">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <h2 id="tweets"><i class="fa fa-twitter"></i> Tweets</h2>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <p><a href="#">#AlzoMiVoz</a> es el Hashtag que puedes usar para reportar denuncias</p>
+                </div>
+                
+                {% for tweet in tweets %}
+                    <div class="item">
+                        <p>{{ tweet.html|safe }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     {% for denuncia in denuncias %}
     <div class="container">
         <div class="row">
@@ -52,6 +66,17 @@
 {% endblock content %}
 {% block extra_js %}
 <script src="{% static 'js/fullscreenFun.min.js' %}"></script>
+<script>
+    $('.carousel').carousel({
+        interval: 5000
+    });
+    $('.carousel').hover(function() {
+        $('.carousel').css('background', 'rgba(0,0,0,0.2)');
+    });
+    $('.carousel').mouseleave(function() {
+        $('.carousel').css('background', 'rgba(0,0,0,0.1)');
+    });
+</script>
 <script>
 (function(){
     $('img').on("click", function(){
