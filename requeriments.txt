@@ -15,11 +15,10 @@ django-social-share==0.2.1
 django-suit==0.2.11
 django-twitter-tag==1.2
 djangorestframework==2.4.3
-gunicorn==18.0
+
 httplib2==0.9
 oauth2==1.5.211
 oauthlib==0.7.1
-psycopg2==2.5.2
 pystache==0.5.4
 python-openid==2.2.5
 python-social-auth==0.2.1
