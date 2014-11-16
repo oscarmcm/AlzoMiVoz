@@ -29,3 +29,10 @@ sorl-thumbnail==11.12
 static==1.0.2
 twitter==1.9.1
 wsgiref==0.1.2
+<<<<<<< Updated upstream
+=======
+django-social-auth==0.7.28
+django-social-share==0.2.1
+dj-static==0.0.5
+static==1.0.2
+>>>>>>> Stashed changes
