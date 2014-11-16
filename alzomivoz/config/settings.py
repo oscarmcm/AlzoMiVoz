@@ -125,7 +125,7 @@ class Common(Configuration):
     USE_L10N = True
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
-    USE_TZ = False
+    USE_TZ = True
     ########## END GENERAL CONFIGURATION
 
     TEMPLATE_CONTEXT_PROCESSORS = (
@@ -296,13 +296,13 @@ class Local(Common):
 
 class Production(Common):
 
-    DEBUG = False
+    DEBUG = True
     ########## INSTALLED_APPS
     INSTALLED_APPS = Common.INSTALLED_APPS
     ########## END INSTALLED_APPS
 
     ########## SECRET KEY
-    SECRET_KEY = values.SecretValue()
+    SECRET_KEY = 'onk8mo=8envufmhe1^@h^_zgiq0xspizlh_d0fjmgz%=qsymgw'
     ########## END SECRET KEY
 
 
@@ -323,17 +323,6 @@ class Production(Common):
     ALLOWED_HOSTS = ["*"]
     ########## END SITE CONFIGURATION
 
-    ########## EMAIL
-    DEFAULT_FROM_EMAIL = values.Value(
-            'Alzo Mi Voz <mail@mail.com>')
-    EMAIL_HOST = 'localhost'
-    EMAIL_HOST_PASSWORD = ''
-    EMAIL_HOST_USER = ''
-    EMAIL_PORT = '25'
-    EMAIL_SUBJECT_PREFIX = ''
-    EMAIL_USE_TLS = False
-    SERVER_EMAIL = EMAIL_HOST_USER
-    ########## END EMAIL
 
     ########## TEMPLATE CONFIGURATION
 
@@ -346,23 +335,6 @@ class Production(Common):
     )
     ########## END TEMPLATE CONFIGURATION
 
-    ########## CACHING
-    #CACHES = values.CacheURLValue(default="memcached://127.0.0.1:11211")
-    CACHES = {
-        'default': {
-            'BACKEND': 'redis_cache.RedisCache',
-            'LOCATION': '127.0.0.1:6379',
-            'OPTIONS': {
-                'DB': 4,
-                'PARSER_CLASS': 'redis.connection.HiredisParser',
-                'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
-                'CONNECTION_POOL_CLASS_KWARGS': {
-                    'max_connections': 50,
-                    'timeout': 20,
-                }
-            },
-        },
-    }
-    ########## END CACHING
+    
 
     
