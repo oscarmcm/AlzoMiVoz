@@ -296,7 +296,7 @@ class Local(Common):
 
 class Production(Common):
 
-    DEBUG = True
+    DEBUG = False
     ########## INSTALLED_APPS
     INSTALLED_APPS = Common.INSTALLED_APPS
     ########## END INSTALLED_APPS
