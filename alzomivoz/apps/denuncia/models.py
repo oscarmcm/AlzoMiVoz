@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from sorl.thumbnail import ImageField
 
 class Denuncia(models.Model):
     titulo = models.CharField(max_length=50)

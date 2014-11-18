@@ -335,6 +335,11 @@ class Production(Common):
     )
     ########## END TEMPLATE CONFIGURATION
 
-    
+    CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'LOCATION': ''
+        }
+    }
 
     
