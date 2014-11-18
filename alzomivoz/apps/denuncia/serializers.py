@@ -6,4 +6,4 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Denuncia
-        fields = ('titulo', 'imagen', 'autor')
+        fields = ('titulo', 'imagen', 'autor', 'lugar')

@@ -59,7 +59,7 @@ def denuncia_collection(request):
         serializer = PostSerializer(denuncia, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        data = {'titulo': request.DATA.get('titulo'),'imagen': request.DATA.get('imagen'), 'autor': request.DATA.get('autor')}
+        data = {'titulo': request.DATA.get('titulo'),'imagen': request.DATA.get('imagen'), 'autor': request.DATA.get('autor'), 'lugar': request.DATA.get('lugar')}
         serializer = PostSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
