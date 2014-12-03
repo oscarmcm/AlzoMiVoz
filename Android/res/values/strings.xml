@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Alzo Mi Voz</string>
+    <string name="welcome">Alzo Mi Voz</string>
+    <string name="subtitle">Bienvenido</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="help">Completa el Formulario</string>
+    <string name="title">Título *</string>
+    <string name="author">Autor</string>
+    <string name="site">Lugar *</string>
+    <string name="upload">Capturar Foto</string>
+    <string name="send">Enviar</string>
+
+</resources>
