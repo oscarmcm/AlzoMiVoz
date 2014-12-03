@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E4F1FE"
+    android:fillViewport="true">
+    
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:paddingLeft="16dp"
+	    android:paddingRight="16dp"
+	    android:paddingTop="20dp"
+	    android:orientation="vertical" >
+    
+	    	<TextView 
+	    	    android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/title"/>
+	    	
+	    	<EditText
+		        android:id="@+id/etTitle"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"/>
+		    
+	    	<TextView 
+	    	    android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:paddingTop="30dp"
+		        android:text="@string/author"/>
+	    	
+		    <EditText
+		        android:id="@+id/etAuthor"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"/>
+		    
+		    <TextView 
+	    	    android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:paddingTop="30dp"
+		        android:text="@string/site"/>
+		    
+		    <EditText
+		        android:id="@+id/etLugar"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content" />
+		    
+		    <RelativeLayout 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_margin="20dp">
+		        
+			    <ImageButton
+			        android:id="@+id/btPhoto"
+			        android:layout_width="40dp"
+			        android:layout_height="40dp"
+			        android:layout_marginTop="10dp"
+			        android:background="@drawable/camera_icon" />
+
+			    <ImageView
+			        android:id="@+id/showImg"
+			        android:layout_width="120dp"
+			        android:layout_height="90dp"
+			        android:layout_marginTop="10dp"
+			        android:layout_alignBottom="@+id/btPhoto"
+			        android:layout_alignParentRight="true" />
+		    </RelativeLayout>
+		    
+		    <Button
+		        android:id="@+id/btSend"
+		        android:layout_width="70dp"
+		        android:layout_height="40dp"
+		        android:layout_gravity="center"
+		        android:text="@string/send"
+		        android:layout_margin="10dp"
+		        style="@style/buttonSend" />
+		    		    
+	</LinearLayout>
+	
+</ScrollView>
