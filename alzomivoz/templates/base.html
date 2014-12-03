@@ -1,0 +1,112 @@
+{% load staticfiles i18n %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Médico en Línea">
+    <meta name="keywords" content="medico en linea, medico, consulta, storm coders, online doctor">
+    <meta name="author" content="Storm Coders">
+
+    <title>Alzo mi Voz</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type='text/css'>
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" type='text/css'>
+    <link rel="icon" type="img/ico" href="{% static 'img/favicon.ico' %}" type='text/css'>
+    <link href="{% static 'font-awesome-4.2.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand"><a href="/"><i class="fa fa-home"></i> Alzo Mi Voz</a></li>
+            <li><a href="{% url 'agregar_denuncia' %}"><i class="fa fa-bullhorn"></i> Denunciar</a></li>
+            <li><a href="{% url 'denuncias_list' %}"><i class="fa fa-eye"></i> Ver Denuncias</a></li>
+            <li><a href="{% url 'panel_estadistica' %}"><i class="fa fa-bar-chart"></i> Estadísticas</a></li>
+            <li><a href="{% url 'mapa' %}"><i class="fa fa-map-marker"></i> Mapa De Incidencias</a></li>
+            <li><a href="/denuncia/api/v1/posts/"><i class="fa fa-database"></i> REST API</a></li>
+            <li><a href="/about"><i class="fa fa-info-circle"></i> Acerca de</a></li>
+            {% if user and not user.is_anonymous %}
+            <li>
+                <a>Hola {{ user.get_full_name|default:user.username }}!</a>
+            </li>
+            <li>
+                <a href="">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    Login
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu login" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'socialauth_begin' 'google-oauth2' %}">Login with Google</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'socialauth_begin' 'facebook' %}">Login with Facebook</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'socialauth_begin' 'twitter' %}">Login with Twitter</a></li>
+                  </ul>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+
+        <div class="footer">
+            <div class="text-center">
+                <ul class="list-inline">
+                    <li><a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github fa-fw fa-3x"></i></a></li>
+                </ul>
+                <hr class="small">
+                <p class="text-muted">Copyright 2014 &copy; Storm Coders</p>
+            </div>
+        </div>
+    </nav>
+    
+    {% block content %}
+    {% endblock content %}
+
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/modernizr.custom.js' %}"></script>
+
+    <script>
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+    {% block extra_js%}
+    {% endblock extra_js %}
+</body>
+
+</html>
