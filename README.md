@@ -7,18 +7,19 @@ What is Alzo Mi Voz
 Alzo Mi Voz  is an easy and simple Django app that help you to create reports, in this case relating about the environment, but this is an extensible and you can occupy what you need
 
 You can see a screencast on [vimeo](http://vimeo.com/112245857)
-View the live [demo](alzomivoz.herokuapp.com)
+
+View the live [demo](http://alzomivoz.herokuapp.com)
 
 What have it
 -------------
 
 This application have this features
 
-1) Maps
-2) Social Auth
-3) REST Api
-4) Graphics
-5) Android App
+1. Maps
+2. Social Auth
+3. REST Api
+4. Graphics
+5. Android App
 
 How to run
 -------------
