@@ -1,3 +1,9 @@
+# We did it 
+
+Thanks to everyone who helped us, we won the National edition running in second place, congratulations to all winners. [AlzoMiVoz - Second Place](http://2014.desarrollandoamerica.org/portfolio/aplicacion-nicaragua-2/) :smile:
+
+
+
 AlzoMiVoz
 =========
 
