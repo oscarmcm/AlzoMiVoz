@@ -5,6 +5,6 @@ from .models import Denuncia
 
 
 class DenunciaForm(ModelForm):
-	
-	class Meta:
-		model = Denuncia
+
+    class Meta:
+        model = Denuncia
